@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-lg-11">
+        <br>
+        <br>
+    
+
+          <h1>ГБУ "ЖИЛИЩНИК РАЙОНА ЮЖНОЕ МЕДВЕДКОВО" </h1>
+          <h4>Сообщите о вашей проблеме заполнив поля ниже:</h4>
+          <hr>
+
+          	
+        
+	        
+	        {% for key, value in data.items %}
+	        	{{key}}: {{value}};
+	        {% endfor %}
+			<form action="/add_list/" method = "post">
+			 {% csrf_token %}
+			 {{ form.as_p }}
+       <button class="btn btn-lg btn-primary btn-block" type="submit">ОТПРАВИТЬ</button>
+			
+   
+			<!--  <class="form-control"> -->
+			</form>
+          <br>
+
+        </div>
+      </div>
+</div>
+
+
+
+
+{%endblock%}

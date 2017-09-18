@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEST</title>
+</head>
+	<body>
+		<div class="container">
+	      <!-- Example row of columns -->
+	      <div class="row">
+	        <div class="col-lg-12">
+	        	<div style="text-align:center;">
+	        		<br>
+	        		<br>
+					<h1>Кол-во заявок - {{ zayavka.count }}!</h1>
+						Выполнено заявок - {{ zayavka_done.count }}
+
+						<br>
+						<br>
+					<p><a class="btn btn-default" href= "{% url 'export_users_csv' %}"role="button">Eхport to excel</a></p>
+
+					
+						<h3>
+
+						 {% for zayavka in zayavka %}
+						 	
+						 	<hr/>
+						 	<br>
+						 	<div style = 'color: #0086ab'>
+						 		Отправитель: {{zayavka.ФИО}}<br />
+						 	</div>Отдел: {{zayavka.Отдел}}<br />				
+							 	Адрес -	{{zayavka.Адрес}}; кабинет - №{{zayavka.Кабинет}} <br />
+							 	
+							 <div style="color: red">
+							 	Проблема: {{ zayavka.Проблема}}<br />	
+							 </div>							 	
+							 	Дата добавления - {{zayavka.create}}<br />
+							 <div style="color: red">	
+							 	Статус заявки - {{zayavka.статус}}<br/>
+							 	<a href="{% url 'export_users_csv' %}">Сделать выгрузку данных</a>
+							 	<br>
+							 	<p><a class="btn btn-default" href= "{% url 'export_users_csv' %}"role="button">Eхport to excel</a></p>
+							 </div>	
+						 {% endfor %}
+						</h3>
+
+							<div class="pagination">
+							 
+							    {% if zayavki.has_previous %}
+							        <a href="?page={{ zayavki.previous_page_number }}">←</a>
+							    {% endif %}
+							 
+							    {% for num in zayavki.paginator.page_range %}
+							        {% if num == zayavki.number %}
+							            <span class="current"><b>{{ num }}</b></span>
+							        {% else %}
+							            <a href="?page={{ num }}"> {{ num }}</a>
+							        {% endif %} 
+							    {% endfor %}
+							 
+							    {% if zayavki_list.has_next %}
+							        <a href="?page={{ zayavki_list.next_page_number }}">→</a>
+							    {% endif %}
+							 
+							</div>
+
+				</div>		
+			</div>		
+		</div>				
+				
+
+	</body>
+</html>
+
+{% endblock %}

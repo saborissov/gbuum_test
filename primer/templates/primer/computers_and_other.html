@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Комьютеры</title>
+</head>
+	<body>
+
+	<!-- 	<div class = "top-bar">
+			<section class="top-bar-section">
+				<ul class="right">
+					{% if username %}
+						<li><a href="/auth/logout/">Выйти({{ username }})</a></li>
+					{% else %}
+						<li><a href="/auth/login/">Войти</a></li>	
+					{% endif %}
+				</ul>
+			</section>
+		</div>			
+ -->
+			</section>
+		<div class="container">
+	      <!-- Example row of columns -->
+	      <div class="row">
+	        <div class="col-lg-12">
+	        	<div style="text-align:center;">
+	        		<br>
+	        		<br>
+	        			
+						<h1>Кол-во записей - {{person.count}}</h1> <br/>
+
+							
+					
+
+						
+					 
+					
+					
+					<p><a class="btn btn-default" href= "{% url 'export_comps_csv' %}"role="button">Eхport to excel</a></p>
+					
+					
+						<h3>
+
+						{% for person in person %}
+						 	
+						 	<hr/>
+						 	<br>
+						 	<div style = 'color: #0086ab'>
+						 		  Инвентраный номер: {{person.barcode}}<br/>
+						 		  МОЛ: {{person.материально_ответственный}}<br />
+						 	</div>Категория: {{person.категория}}<br />	
+						 		Списано: {{person.списано}}<br/>
+						 					<br>
+						 					<br>
+
+						 					
+							 	<!-- Адрес -	{{zayavka.Адрес}}; кабинет - №{{zayavka.Кабинет}} <br />
+							 	
+							 <div style="color: red">
+							 	Проблема: {{ zayavka.Проблема}}<br />	
+							 </div>							 	
+							 	Дата добавления - {{zayavka.create}}<br />
+							 <div style="color: red">	
+							 	Статус заявки - {{zayavka.статус}}<br/>
+							 	<a href="{% url 'export_users_csv' %}">Сделать выгрузку данных</a>
+							 	<br>
+							 	<p><a class="btn btn-default" href= "{% url 'export_users_csv' %}"role="button">Eхport to excel</a></p>
+							 </div>	 -->
+
+
+
+						{% endfor %}
+
+						 <div class="pagination">
+							    {% if person.has_previous %}
+							        <a href="?page={{ person.previous_page_number }}">←</a>
+							    {% endif %}
+							 	<!-- страница - {{person.count}}	 -->
+							    {% for num in person.paginator.page_range %}
+							        {% if num == person.number %}
+							            <span class="current"><b>{{ num }}</b></span>
+							        {% else %}
+							            <a href="?page={{ num }}"> {{ num }}</a>
+							        {% endif %} 
+							    {% endfor %}
+							 		
+							    {% if person_list.has_next %}
+							        <a href="?page={{ person_list.next_page_number }}">→</a>
+							    {% endif %}
+							 
+							</div>
+
+
+						</h3>
+				</div>		
+			</div>		
+		</div>				
+				
+
+	</body>
+</html>
+
+
+{% endblock %}

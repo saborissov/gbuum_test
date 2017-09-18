@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Принтер-картриджи</title>
+</head>
+	<body>
+		<div class="container">
+	      <!-- Example row of columns -->
+	      <div class="row">
+	        <div class="col-lg-12">
+	        	<div style="text-align:center;">
+	        		<br>
+	        		<br>
+					<h1>Кол-во записей - {{ printer.count }}</h1>
+					<p><a class="btn btn-default" href= "{% url 'export_comps_csv' %}"role="button">Eхport to excel</a></p>
+					<br>
+					<br>
+					<div align="center"><a href="/">Вернуться на главную страницу</a>
+
+
+						<h3>
+
+						 {% for person in person %}
+
+						 	<hr/>
+						 	<br>
+						 	<div style = 'color: red'>
+						 	       Инвентраный номер:{{person.barcode}}<br/>
+						 	</div>
+						 	<div style = 'color: #0086ab'>
+						 	      МОЛ: {{person.материально_ответственный}}<br />
+						 	</div>Категория: {{person.категория}}<br />
+						 	      Наименование:{{person.наименование}}<br/>
+						 	      Модель устройства:{{person.модель_устройства}}<br/>
+						 	<div style = 'color: #0086ab'>
+						 	      Местонахождение: {{person.id_места_установки}}<br/>
+						 	</div>
+						 	      Дата добавления: {{person.created}}<br/>
+						 	      статус: {{person.статус }}
+
+							 	<!-- Адрес -	{{zayavka.Адрес}}; кабинет - №{{zayavka.Кабинет}} <br />
+
+							 <div style="color: red">
+							 	Проблема: {{ zayavka.Проблема}}<br />
+							 </div>
+							 	Дата добавления - {{zayavka.create}}<br />
+							 <div style="color: red">
+							 	Статус заявки - {{zayavka.статус}}<br/>
+							 	<a href="{% url 'export_users_csv' %}">Сделать выгрузку данных</a>
+							 	<br>
+							 	<p><a class="btn btn-default" href= "{% url 'export_users_csv' %}"role="button">Eхport to excel</a></p>
+							 </div>	 -->
+						 {% endfor %}
+						</h3>
+                            <hr/>
+                            <!-- <div class="pagination">
+                              <h3>
+                                {% if person.has_previous %}
+                                    <a href="?page={{ person.previous_page_number }}">←</a>
+                                {% endif %}
+
+                                {% for num in person.paginator.page_range %}
+                                    {% if num == person.number %}
+                                        <span class="current"><b>{{ num }}</b></span>
+                                    {% else %}
+                                        <a href="?page={{ num }}"> {{ num }}</a>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if person_list.has_next %}
+                                    <a href="?page={{ person_list.next_page_number }}">→</a>
+                                {% endif %}
+                              </h3>
+                            </div> -->
+
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>
+
+
+{% endblock %}
